@@ -1,23 +1,23 @@
-//Union Types
-function combine(input1, input2, resultConversion) {
-    var result;
-    if ((typeof input1 === "number" && typeof input2 === "number") ||
-        resultConversion === "as-number") {
-        result = +input1 + +input2;
-    }
-    else {
-        result = input1.toString() + input2.toString();
-    }
-    return result;
-    //   if (resultConversion === "as-number") {
-    //     return +result;
-    //   } else {
-    //     return result.toString();
-    //   }
+// function add(n1: number, n2: number) {
+//     return n1 + n2;
+// }
+//When we hover over add, it shows:
+// function add(n1: number, n2: number): number
+//which means the functions return type is a number
+// function add(n1: number, n2: number) {
+//     return n1.toString() + n2.toString();
+// }
+//Now the return type of function became string
+// function add(n1: number, n2: number): string {
+//     return n1 + n2;
+// }
+//This gives error since n1 & n2 are of type numbe and we explicitly changed it's return type of number
+function add(n1, n2) {
+    return n1 + n2;
 }
-var combinedAges = combine(30, 45, "as-number");
-console.log(combinedAges);
-var combinedStrigAges = combine("30", "45", "as-number");
-console.log(combinedStrigAges);
-var combinedNames = combine("Max", "Anna", "as-text");
-console.log(combinedNames);
+function printResult(num) {
+    console.log("Result: " + num);
+}
+//This function has no return. So, this function's return type became void which is identified by TypeScript.
+// printResult(add(5, 12));
+console.log(printResult(add(5, 12)));
