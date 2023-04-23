@@ -3,6 +3,9 @@ let userName: string;
 
 userInput = 5;
 userInput = "Max";
+// userName = userInput;
+// console.log(userName)
+
 if (typeof userInput === "string") {
   userName = userInput;
 }
