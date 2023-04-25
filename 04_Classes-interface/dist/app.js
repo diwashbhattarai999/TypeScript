@@ -24,8 +24,8 @@ var Department = /** @class */ (function () {
         // this.id = id;
         // this.name = n;
     }
-    Department.prototype.describe = function () {
-        console.log("Department (".concat(this.id, "): ").concat(this.name));
+    Department.createEmployee = function (name) {
+        return { name: name };
     };
     Department.prototype.addEmployee = function (employee) {
         // this.id = '23';
@@ -35,6 +35,7 @@ var Department = /** @class */ (function () {
         console.log(this.employees.length);
         console.log(this.employees);
     };
+    Department.fiscalYear = 2020;
     return Department;
 }());
 // const accounting = new Department("d1", "Accounting");
@@ -57,14 +58,17 @@ var ITDepartment = /** @class */ (function (_super) {
         _this.admins = admins;
         return _this;
     }
+    ITDepartment.prototype.describe = function () {
+        console.log("IT Department - ID: " + this.id);
+    };
     return ITDepartment;
 }(Department));
 var programming = new ITDepartment("D1", ["Max"]);
 programming.addEmployee("Ram");
 programming.addEmployee("Sita");
 programming.describe();
-programming.printEmployeeInfo();
-console.log(programming);
+// programming.printEmployeeInfo();
+// console.log(programming);
 var AccountingDepartment = /** @class */ (function (_super) {
     __extends(AccountingDepartment, _super);
     function AccountingDepartment(id, reports) {
@@ -89,6 +93,16 @@ var AccountingDepartment = /** @class */ (function (_super) {
         enumerable: false,
         configurable: true
     });
+    AccountingDepartment.getInstance = function () {
+        if (AccountingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment("d2", []);
+        return this.instance;
+    };
+    AccountingDepartment.prototype.describe = function () {
+        console.log("Accounting Department - ID: " + this.id);
+    };
     AccountingDepartment.prototype.addEmployee = function (name) {
         if (name === "Shyam") {
             return;
@@ -104,13 +118,40 @@ var AccountingDepartment = /** @class */ (function (_super) {
     };
     return AccountingDepartment;
 }(Department));
-var accounting = new AccountingDepartment("D1", []);
+// const accounting = new AccountingDepartment("D1", []);
+var accounting = AccountingDepartment.getInstance();
+var accounting2 = AccountingDepartment.getInstance();
+console.log(accounting, accounting2);
 accounting.mostRecentReport = "Year End Report";
 accounting.addEmployee("Shyam");
 accounting.addEmployee("Ryam");
 accounting.addReport("Something went wrong...");
-accounting.printReports();
-console.log(accounting.mostRecentReport);
+// accounting.printReports();
+// console.log(accounting.mostRecentReport);
 accounting.describe();
-accounting.printEmployeeInfo();
-console.log(accounting);
+// accounting.printEmployeeInfo();
+// console.log(accounting);
+// class Person {
+//   constructor(private firstName: string, private lastName: string) {
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//   }
+//   getFullName(): string {
+//     return `${this.firstName} ${this.lastName}`;
+//   }
+//   describe(): string {
+//     return `This is ${this.firstName} ${this.lastName}. `;
+//   }
+// }
+// class Employee extends Person {
+//   constructor(firstName: string, lastName: string, private jobTitle: string) {
+//     super(firstName, lastName);
+//   }
+//   describe(): string {
+//     return super.describe() + `I'm a ${this.jobTitle}.`;
+//   }
+// }
+// let employee = new Employee("Diwash", "Bhattarai", "Web Developer");
+// console.log(employee.describe());
+// const employee1 = Department.createEmployee("Hari");
+// console.log(employee1, Department.fiscalYear);
