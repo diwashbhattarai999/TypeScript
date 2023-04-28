@@ -75,3 +75,22 @@ function useVehicle(vehicle) {
 }
 useVehicle(v1);
 useVehicle(v2);
+function moveAnimal(animal) {
+    let speed;
+    switch (animal.type) {
+        case "bird":
+            speed = animal.flyingSpeed;
+            break;
+        case "horse":
+            speed = animal.runningSpeed;
+    }
+    console.log("Moving with speed: " + speed);
+}
+moveAnimal({ type: "bird", flyingSpeed: 10 });
+//Type Casting
+// const paragraph = document.getElementById("message-output");
+// const userInput = <HTMLInputElement>document.getElementById("user-input")!;
+const userInput = document.getElementById("user-input");
+if (userInput) {
+    userInput.value = "Hi there!";
+}

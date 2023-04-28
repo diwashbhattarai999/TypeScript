@@ -94,3 +94,40 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+//Discriminated Unions:
+
+interface Bird {
+  type: "bird";
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: "horse";
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal(animal: Animal) {
+  let speed;
+  switch (animal.type) {
+    case "bird":
+      speed = animal.flyingSpeed;
+      break;
+    case "horse":
+      speed = animal.runningSpeed;
+  }
+  console.log("Moving with speed: " + speed);
+}
+
+moveAnimal({ type: "bird", flyingSpeed: 10 });
+
+//Type Casting
+// const paragraph = document.getElementById("message-output");
+// const userInput = <HTMLInputElement>document.getElementById("user-input")!;
+const userInput = document.getElementById("user-input");
+
+if (userInput) {
+  (userInput as HTMLInputElement).value = "Hi there!";
+}
